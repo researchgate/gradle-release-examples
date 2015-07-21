@@ -1,0 +1,26 @@
+plugins {
+    id 'java'
+    id 'idea'
+    id "net.researchgate.release" version "2.1.2"
+}
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+task(startmessage) << {
+    println 'starting build'
+}
+
+task(printversion) << {
+    println project.version
+}
+
+beforeReleaseBuild.dependsOn startmessage
+afterReleaseBuild.dependsOn printversion
+
+wrapper.gradleVersion = '2.5'
