@@ -12,6 +12,10 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
 
+release {
+    tagTemplate = "${name}-${version}"
+}
+
 task(startmessage) << {
     println 'starting build'
 }
