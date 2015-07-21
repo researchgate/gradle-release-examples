@@ -13,7 +13,7 @@ dependencies {
 }
 
 release {
-    tagTemplate = "${name}-${version}"
+    tagTemplate = '$name-$version'
 }
 
 task(startmessage) << {
