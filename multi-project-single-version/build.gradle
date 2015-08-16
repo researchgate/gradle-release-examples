@@ -1,6 +1,6 @@
 plugins {
     id 'idea'
-    id 'net.researchgate.release' version '2.1.2'
+    id 'net.researchgate.release' version '2.2.0'
 }
 
 allprojects {
