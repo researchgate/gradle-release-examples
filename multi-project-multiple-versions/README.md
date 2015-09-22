@@ -1,7 +1,7 @@
 # multi-project-multiple-versions example
 
 This is a simple example on how a multi project could look like and how the gradle-release plugin is configured.
-In this example we use one version for all the projects.
+In this example we use separate versions for each (sub)project.
 
 ## Usage
 
@@ -19,6 +19,18 @@ On windows you would do
 ```
 $ cd multi-project-single-version
 $ gradlew.bat release
+```
+
+Only releasing the parent/root-project
+
+```
+$ ./gradlew :release
+```
+
+Only releasing one sub-project
+
+```
+$ ./gradlew :subproject1:release
 ```
 
 ## Contributing
