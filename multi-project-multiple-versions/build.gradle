@@ -1,0 +1,42 @@
+buildscript {
+    repositories {
+        maven { url 'http://oss.jfrog.org/artifactory/oss-snapshot-local' }
+    }
+    dependencies {
+        classpath 'net.researchgate:gradle-release:2.3.0-PR116-SNAPSHOT'
+    }
+}
+
+plugins {
+    id 'idea'
+}
+
+allprojects {
+    apply plugin: 'java'
+    apply plugin: 'net.researchgate.release'
+
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        testCompile group: 'junit', name: 'junit', version: '4.12'
+    }
+
+    release {
+        tagTemplate = '$name-$version'
+    }
+
+    task(startmessage) << {
+        println 'starting build'
+    }
+
+    task(printversion) << {
+        println project.version
+    }
+
+    beforeReleaseBuild.dependsOn startmessage
+    afterReleaseBuild.dependsOn printversion
+}
+
+wrapper.gradleVersion = '2.5'
