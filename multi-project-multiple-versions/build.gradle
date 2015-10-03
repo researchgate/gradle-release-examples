@@ -3,7 +3,7 @@ buildscript {
         maven { url 'http://oss.jfrog.org/artifactory/oss-snapshot-local' }
     }
     dependencies {
-        classpath 'net.researchgate:gradle-release:2.3.0-PR116-SNAPSHOT'
+        classpath 'net.researchgate:gradle-release:2.3.0-SNAPSHOT'
     }
 }
 
