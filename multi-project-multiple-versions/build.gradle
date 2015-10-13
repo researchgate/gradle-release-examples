@@ -1,9 +1,9 @@
 buildscript {
     repositories {
-        maven { url 'http://oss.jfrog.org/artifactory/oss-snapshot-local' }
+        jcenter()
     }
     dependencies {
-        classpath 'net.researchgate:gradle-release:2.3.0-SNAPSHOT'
+        classpath 'net.researchgate:gradle-release:2.3.0'
     }
 }
 
@@ -39,4 +39,4 @@ allprojects {
     afterReleaseBuild.dependsOn printversion
 }
 
-wrapper.gradleVersion = '2.5'
+wrapper.gradleVersion = '2.7'

@@ -1,7 +1,7 @@
 plugins {
     id 'java'
     id 'idea'
-    id 'net.researchgate.release' version '2.2.0'
+    id 'net.researchgate.release' version '2.3.0'
 }
 
 repositories {
@@ -27,4 +27,4 @@ task(printversion) << {
 beforeReleaseBuild.dependsOn startmessage
 afterReleaseBuild.dependsOn printversion
 
-wrapper.gradleVersion = '2.5'
+wrapper.gradleVersion = '2.7'
