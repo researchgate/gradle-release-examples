@@ -1,0 +1,2 @@
+rootProject.name = 'multi-project-cross-project-dependency-single-version'
+include ('subproject1','subproject2')
