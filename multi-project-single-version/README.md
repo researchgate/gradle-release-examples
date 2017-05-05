@@ -2,6 +2,7 @@
 
 This is a simple example on how a multi project could look like and how the gradle-release plugin is configured.
 In this example we use one version for all the projects.
+For this to work correctly, the release plugin should only be applied to the root project. Do not apply the plugin to subprojects.
 
 ## Usage
 
