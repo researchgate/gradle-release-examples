@@ -13,21 +13,49 @@ allprojects {
     dependencies {
         testCompile group: 'junit', name: 'junit', version: '4.12'
     }
+
+    task publish {
+        println "Publishing $jar.archiveName archive to your central repository"
+    }
 }
 
 release {
     tagTemplate = '$name-$version'
 }
 
-task(startmessage) << {
-    println 'starting build'
+// Here we define our own tasks to invoke the release plugin tasks.
+// This is to support multi module project releases. We only want to touch the scm once.
+// We also override the release task, in order to execute our new tasks.
+
+task prepareRelease(dependsOn: [
+    createScmAdapter,
+    initScmAdapter,
+    checkCommitNeeded,
+    checkUpdateNeeded,
+    unSnapshotVersion,
+    confirmReleaseVersion, 
+    checkSnapshotDependencies,
+    preTagCommit,
+]) {}
+
+task performRelease(type: GradleBuild, dependsOn: prepareRelease) {
+    tasks = ['publish']
+    // Gradle knows which sub projects will have the 'publish' task, and add them into the task graph for us.
+    // It will also work out the dependencies between projects as normal, so the order of build/publish is handled for us.
 }
 
-task(printversion) << {
-    println project.version
+task finalizeRelease(dependsOn: [
+    createScmAdapter,
+    initScmAdapter,
+    createReleaseTag,
+    updateVersion,
+    commitNewVersion
+]) {
+    mustRunAfter performRelease
 }
 
-beforeReleaseBuild.dependsOn startmessage
-afterReleaseBuild.dependsOn printversion
+createReleaseTag.mustRunAfter initScmAdapter
+
+task release(overwrite: true, dependsOn: [performRelease, finalizeRelease]) {}
 
 wrapper.gradleVersion = '2.10'
