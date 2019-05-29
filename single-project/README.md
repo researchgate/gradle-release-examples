@@ -25,3 +25,5 @@ $ gradlew.bat release
 
 If you have an idea which feature of the gradle-release plugin we could show here,
 you are welcome to submit a pull request.
+
+WUJ
